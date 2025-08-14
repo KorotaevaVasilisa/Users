@@ -72,3 +72,6 @@ fun User.toDomain(): DomainUser = DomainUser(
     registered = registered.toDomain()
 )
 
+fun List<User>.toDomain(): List<DomainUser> = map { it.toDomain() }
+
+fun ApiResponse.toDomain(): List<DomainUser> = results.map { it.toDomain() }

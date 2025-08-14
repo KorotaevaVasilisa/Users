@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.vsls.users.di.networkModule
+import ru.vsls.users.di.repositoryModule
 
 
 class MyApplication : Application() {
@@ -11,7 +12,7 @@ class MyApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApplication)
-            modules(networkModule)
+            modules(networkModule, repositoryModule)
         }
     }
 }
