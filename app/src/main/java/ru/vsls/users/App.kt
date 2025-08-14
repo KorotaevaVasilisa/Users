@@ -5,6 +5,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.vsls.users.di.networkModule
 import ru.vsls.users.di.repositoryModule
+import ru.vsls.users.di.viewModelModule
 
 
 class MyApplication : Application() {
@@ -12,7 +13,7 @@ class MyApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApplication)
-            modules(networkModule, repositoryModule)
+            modules(networkModule, repositoryModule, viewModelModule)
         }
     }
 }
