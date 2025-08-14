@@ -5,7 +5,6 @@ data class User(
     val dob: Dob,
     val email: String,
     val gender: String,
-    val id: Id,
     val location: Location,
     val name: Name,
     val nat: String,

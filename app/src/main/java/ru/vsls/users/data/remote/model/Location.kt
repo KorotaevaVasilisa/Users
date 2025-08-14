@@ -10,8 +10,6 @@ data class Location(
     val city: String,
     @SerialName("country")
     val country: String,
-    @SerialName("postcode")
-    val postcode: Int,
     @SerialName("state")
     val state: String,
     @SerialName("street")

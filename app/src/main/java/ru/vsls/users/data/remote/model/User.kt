@@ -14,8 +14,6 @@ data class User(
     val email: String,
     @SerialName("gender")
     val gender: String,
-    @SerialName("id")
-    val id: Id,
     @SerialName("location")
     val location: Location,
     @SerialName("name")

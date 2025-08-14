@@ -2,7 +2,6 @@ package ru.vsls.users.data.remote.mapper
 
 import ru.vsls.users.data.remote.model.ApiResponse
 import ru.vsls.users.data.remote.model.Dob
-import ru.vsls.users.data.remote.model.Id
 import ru.vsls.users.data.remote.model.Location
 import ru.vsls.users.data.remote.model.Name
 import ru.vsls.users.data.remote.model.Picture
@@ -10,7 +9,6 @@ import ru.vsls.users.data.remote.model.Registered
 import ru.vsls.users.data.remote.model.Street
 import ru.vsls.users.data.remote.model.User
 import ru.vsls.users.domain.model.Dob as DomainDob
-import ru.vsls.users.domain.model.Id as DomainId
 import ru.vsls.users.domain.model.Location as DomainLocation
 import ru.vsls.users.domain.model.Name as DomainName
 import ru.vsls.users.domain.model.Picture as DomainPicture
@@ -23,10 +21,6 @@ fun Dob.toDomain(): DomainDob = DomainDob(
     date = date
 )
 
-fun Id.toDomain(): DomainId = DomainId(
-    name = name,
-    value = value
-)
 
 fun Street.toDomain(): DomainStreet = DomainStreet(
     name = name,
@@ -36,7 +30,6 @@ fun Street.toDomain(): DomainStreet = DomainStreet(
 fun Location.toDomain(): DomainLocation = DomainLocation(
     city = city,
     country = country,
-    postcode = postcode,
     state = state,
     street = street.toDomain()
 )
@@ -63,7 +56,6 @@ fun User.toDomain(): DomainUser = DomainUser(
     dob = dob.toDomain(),
     email = email,
     gender = gender,
-    id = id.toDomain(),
     location = location.toDomain(),
     name = name.toDomain(),
     nat = nat,
