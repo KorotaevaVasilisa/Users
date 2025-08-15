@@ -11,11 +11,7 @@ class DatabaseRepositoryImpl(private val dao: UserDao) : DatabaseRepository {
         return dao.getUsers().map { it.toDomain() }
     }
 
-    override suspend fun deleteLocalUser() {
-        dao.deleteUsers()
-    }
-
-    override suspend fun insertNewUsers(users: List<User>) {
-        dao.insertUsers(users.map { it.toEntity() })
+    override suspend fun updateUsers(users: List<User>) {
+        dao.updateUsers(users.map { it.toEntity() })
     }
 }

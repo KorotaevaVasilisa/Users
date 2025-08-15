@@ -11,7 +11,7 @@ fun provideDatabase(applicationContext: Context): AppDatabase {
     return Room.databaseBuilder(
         applicationContext,
         AppDatabase::class.java,
-        "my-database"
+        "my_database.db"
     )
         .build()
 }
