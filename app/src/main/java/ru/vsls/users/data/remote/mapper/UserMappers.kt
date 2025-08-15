@@ -1,67 +1,32 @@
 package ru.vsls.users.data.remote.mapper
 
 import ru.vsls.users.data.remote.model.ApiResponse
-import ru.vsls.users.data.remote.model.Dob
-import ru.vsls.users.data.remote.model.Location
-import ru.vsls.users.data.remote.model.Name
-import ru.vsls.users.data.remote.model.Picture
-import ru.vsls.users.data.remote.model.Registered
-import ru.vsls.users.data.remote.model.Street
 import ru.vsls.users.data.remote.model.User
-import ru.vsls.users.domain.model.Dob as DomainDob
-import ru.vsls.users.domain.model.Location as DomainLocation
-import ru.vsls.users.domain.model.Name as DomainName
-import ru.vsls.users.domain.model.Picture as DomainPicture
-import ru.vsls.users.domain.model.Registered as DomainRegistered
-import ru.vsls.users.domain.model.Street as DomainStreet
 import ru.vsls.users.domain.model.User as DomainUser
+import java.util.UUID
 
-fun Dob.toDomain(): DomainDob = DomainDob(
-    age = age,
-    date = date
-)
-
-
-fun Street.toDomain(): DomainStreet = DomainStreet(
-    name = name,
-    number = number
-)
-
-fun Location.toDomain(): DomainLocation = DomainLocation(
-    city = city,
-    country = country,
-    state = state,
-    street = street.toDomain()
-)
-
-fun Name.toDomain(): DomainName = DomainName(
-    title = title,
-    first = first,
-    last = last
-)
-
-fun Picture.toDomain(): DomainPicture = DomainPicture(
-    large = large,
-    medium = medium,
-    thumbnail = thumbnail
-)
-
-fun Registered.toDomain(): DomainRegistered = DomainRegistered(
-    age = age,
-    date = date
-)
+private fun buildStableId(email: String, phone: String): String =
+    UUID.nameUUIDFromBytes("${email.lowercase()}|${phone}".toByteArray()).toString()
 
 fun User.toDomain(): DomainUser = DomainUser(
-    cell = cell,
-    dob = dob.toDomain(),
-    email = email,
+    id = buildStableId(email = email, phone = phone),
     gender = gender,
-    location = location.toDomain(),
-    name = name.toDomain(),
-    nat = nat,
+    title = name.title,
+    firstName = name.first,
+    lastName = name.last,
+    email = email,
     phone = phone,
-    picture = picture.toDomain(),
-    registered = registered.toDomain()
+    streetNumber = location.street.number,
+    streetName = location.street.name,
+    city = location.city,
+    state = location.state,
+    country = location.country,
+    pictureLarge = picture.large,
+    pictureMedium = picture.medium,
+    pictureThumbnail = picture.thumbnail,
+    dobDateIso = dob.date,
+    dobAge = dob.age,
+    nat = nat,
 )
 
 fun List<User>.toDomain(): List<DomainUser> = map { it.toDomain() }

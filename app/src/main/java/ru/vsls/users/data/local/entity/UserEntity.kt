@@ -1,7 +1,11 @@
-package ru.vsls.users.domain.model
+package ru.vsls.users.data.local.entity
 
-data class User(
-    val id: String,
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = UserEntity.TABLE_NAME)
+data class UserEntity(
+    @PrimaryKey val id: String,
     val gender: String,
     val title: String?,
     val firstName: String,
@@ -19,4 +23,8 @@ data class User(
     val dobDateIso: String,
     val dobAge: Int,
     val nat: String,
-)
+){
+    companion object{
+        const val TABLE_NAME = "users"
+    }
+}
