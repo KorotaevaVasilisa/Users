@@ -5,5 +5,5 @@ import org.koin.dsl.module
 import ru.vsls.users.presentation.screens.list.ListViewModel
 
 val viewModelModule = module {
-    viewModel{ ListViewModel(get()) }
+    viewModel{ ListViewModel(get(),get()) }
 }

@@ -1,5 +1,6 @@
 package ru.vsls.users.presentation.screens.list
 
+import android.R.attr.contentDescription
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,8 +42,8 @@ fun ListItem(
                 link,
                 modifier = Modifier
                     .size(80.dp)
-                    .clip(RoundedCornerShape(8.dp)), // скругление по желанию
-                contentScale = ContentScale.Crop, // чтобы картинка не растягивалась и заполняла контейнер
+                    .clip(RoundedCornerShape(15.dp)),
+                contentScale = ContentScale.Crop,
                 contentDescription = null,
             )
             UserInfo(name, surname, phone, address)
@@ -56,8 +57,7 @@ fun UserInfo(name: String, surname: String, phone: String, address: String) {
         modifier = Modifier.padding(start = 8.dp),
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        Text(text = name)
-        Text(text = surname)
+        Text(text = "$name $surname")
         Text(text = phone)
         Text(text = address)
     }
