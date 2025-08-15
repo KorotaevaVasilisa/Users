@@ -6,9 +6,12 @@ import ru.vsls.users.data.local.DatabaseRepositoryImpl
 import ru.vsls.users.data.remote.NetworkRepositoryImpl
 import ru.vsls.users.domain.repositories.DatabaseRepository
 import ru.vsls.users.domain.repositories.NetworkRepository
+import ru.vsls.users.domain.useCases.GetUsersUseCase
+import ru.vsls.users.domain.useCases.GetUsersUseCaseImpl
 
 val repositoryModule = module {
     //singleOf(::NetworkRepositoryImpl) bind NetworkRepository::class
     single<NetworkRepository> { NetworkRepositoryImpl(get()) }
     single<DatabaseRepository> { DatabaseRepositoryImpl(get()) }
+    single<GetUsersUseCase> { GetUsersUseCaseImpl(get()) }
 }
