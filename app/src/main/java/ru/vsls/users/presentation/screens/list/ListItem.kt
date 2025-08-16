@@ -1,6 +1,8 @@
 package ru.vsls.users.presentation.screens.list
 
 import android.R.attr.contentDescription
+import android.R.attr.name
+import android.system.Os.link
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +33,7 @@ fun ListItem(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        onClick = onItemClick,
+        onClick = {onItemClick()},
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp,
             pressedElevation = 4.dp
