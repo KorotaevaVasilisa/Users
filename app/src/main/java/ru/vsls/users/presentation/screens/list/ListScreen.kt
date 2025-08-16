@@ -2,6 +2,7 @@ package ru.vsls.users.presentation.screens.list
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -64,7 +65,7 @@ fun PullToRefreshCustomStyle(
     PullToRefreshBox(
         isRefreshing = isRefreshing,
         onRefresh = onRefresh,
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().padding(8.dp),
         state = state,
         contentAlignment = Alignment.Center,
         indicator = {
@@ -82,14 +83,15 @@ fun PullToRefreshCustomStyle(
 
         LazyColumn(
             Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(vertical = 8.dp)
         ) {
             items(items, key = { it.id }) { item ->
                 ListItem(
                     item.firstName,
                     item.lastName,
                     item.phone,
-                    item.pictureThumbnail,
+                    item.pictureMedium,
                     item.city
                 ) { onNavigateToDetailsScreen(item.id) }
             }
