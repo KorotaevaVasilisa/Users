@@ -6,6 +6,8 @@ import ru.vsls.users.data.local.DatabaseRepositoryImpl
 import ru.vsls.users.data.remote.NetworkRepositoryImpl
 import ru.vsls.users.domain.repositories.DatabaseRepository
 import ru.vsls.users.domain.repositories.NetworkRepository
+import ru.vsls.users.domain.useCases.GetUserByIdUseCase
+import ru.vsls.users.domain.useCases.GetUserByIdUseCaseImpl
 import ru.vsls.users.domain.useCases.GetUsersUseCase
 import ru.vsls.users.domain.useCases.GetUsersUseCaseImpl
 import ru.vsls.users.domain.useCases.UpdateUsersUseCase
@@ -17,4 +19,5 @@ val repositoryModule = module {
     single<DatabaseRepository> { DatabaseRepositoryImpl(get()) }
     single<GetUsersUseCase> { GetUsersUseCaseImpl(get()) }
     single<UpdateUsersUseCase> { UpdateUsersUseCaseImpl(get(), get()) }
+    single<GetUserByIdUseCase> { GetUserByIdUseCaseImpl(get()) }
 }

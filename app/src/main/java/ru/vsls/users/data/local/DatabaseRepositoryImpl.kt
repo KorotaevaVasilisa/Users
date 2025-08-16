@@ -14,4 +14,8 @@ class DatabaseRepositoryImpl(private val dao: UserDao) : DatabaseRepository {
     override suspend fun updateUsers(users: List<User>) {
         dao.updateUsers(users.map { it.toEntity() })
     }
+
+    override suspend fun getLocalUser(id: String): User? {
+       return dao.getUserById(id)?.toDomain()
+    }
 }

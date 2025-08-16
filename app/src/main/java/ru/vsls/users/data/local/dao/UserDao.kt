@@ -22,4 +22,7 @@ interface UserDao {
         deleteUsers()
         insertUsers(users)
     }
+
+    @Query("SELECT * FROM users WHERE id = :id")
+    suspend fun getUserById(id: String): UserEntity?
 }
