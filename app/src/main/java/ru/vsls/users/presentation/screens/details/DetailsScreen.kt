@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Alignment
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,13 +33,19 @@ fun DetailsScreen(id: String, onBack: () -> Unit, viewModel: DetailsViewModel = 
             )
         }
     ) { innerPadding ->
-        Column(
+        Box(
             modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
+                .fillMaxSize()
+                .padding(innerPadding),
+            contentAlignment = Alignment.Center
         ) {
-            Text("Идентификатор пользователя — $id")
+            when {
+                uiState.isLoading -> CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
+                uiState.error != null -> Text("Ошибка: ${uiState.error}")
+                else -> {
 
+                }
+            }
         }
     }
 }
