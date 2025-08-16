@@ -1,4 +1,4 @@
-package ru.vsls.users.presentation.screens.navigation
+package ru.vsls.users.presentation.navigation
 
 sealed class Screen(val route: String) {
     object Main : Screen("main")

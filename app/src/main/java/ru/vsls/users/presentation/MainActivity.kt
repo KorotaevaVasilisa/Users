@@ -1,4 +1,4 @@
-package ru.vsls.users
+package ru.vsls.users.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import ru.vsls.users.presentation.screens.details.DetailsScreen
 import ru.vsls.users.presentation.screens.list.ListScreen
-import ru.vsls.users.presentation.screens.navigation.Screen
+import ru.vsls.users.presentation.navigation.Screen
 import ru.vsls.users.ui.theme.UsersTheme
 
 class MainActivity : ComponentActivity() {
