@@ -1,25 +1,27 @@
 package ru.vsls.users.presentation.screens.list
 
-import android.R.attr.contentDescription
-import android.R.attr.name
-import android.system.Os.link
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import ru.vsls.users.presentation.items.InfoRow
 
 @Composable
 fun ListItem(
@@ -27,41 +29,50 @@ fun ListItem(
     surname: String,
     phone: String,
     link: String,
-    address: String,
+    city: String,
     onItemClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        onClick = {onItemClick()},
+        onClick = { onItemClick() },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp,
             pressedElevation = 4.dp
         ),
     ) {
-        Row(Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.Start) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             AsyncImage(
                 link,
                 modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(15.dp)),
+                    .size(90.dp)
+                    .clip(CircleShape),
                 contentScale = ContentScale.Crop,
-                contentDescription = null,
+                contentDescription = "Фото пользователя"
             )
-            UserInfo(name, surname, phone, address)
+            UserInfo(name, surname, phone, city)
         }
     }
 }
 
 @Composable
-fun UserInfo(name: String, surname: String, phone: String, address: String) {
+fun UserInfo(name: String, surname: String, phone: String, city: String) {
     Column(
         modifier = Modifier.padding(start = 8.dp),
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        Text(text = "$name $surname")
-        Text(text = phone)
-        Text(text = address)
+        Text(
+            text = "${name} ${surname}",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold
+        )
+        InfoRow(label = "Телефон:", value = phone)
+        InfoRow(label = "Город:", value = city)
     }
 }
 
@@ -73,7 +84,7 @@ fun ListItemPreview() {
         surname = "Surname",
         phone = "Phone",
         link = "https://example.com/image.jpg",
-        address = "Address",
+        city = "Address",
         onItemClick = {}
     )
 }
