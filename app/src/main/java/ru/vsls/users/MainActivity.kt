@@ -52,7 +52,7 @@ fun UserNavHost(navController: NavHostController, modifier: Modifier = Modifier)
             route = Screen.UserDetails.route,
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getString("id") ?: ""
+            val id = backStackEntry.arguments?.getString("id") ?: return@composable
             DetailsScreen(
                 id = id,
                 onBack = { navController.popBackStack() }
