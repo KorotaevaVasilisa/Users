@@ -20,10 +20,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import ru.vsls.users.domain.model.User
 import ru.vsls.users.presentation.items.InfoRow
 import androidx.core.net.toUri
+import ru.vsls.users.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,10 +42,10 @@ fun DetailsScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = "Пользователь ${state.user?.firstName}") },
+                title = { Text(text = stringResource(R.string.user)+ state.user?.firstName) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Назад")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 }
             )
@@ -59,7 +61,7 @@ fun DetailsScreen(
             when {
                 state.error != null -> {
                     Text(
-                        text = state.error ?: "Неизвестная ошибка",
+                        text = state.error ?: stringResource(R.string.error),
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodyLarge
                     )
@@ -89,7 +91,7 @@ fun UserDetailsContent(user: User) {
     ) {
         AsyncImage(
             model = user.pictureLarge,
-            contentDescription = "Фото пользователя",
+            contentDescription = stringResource(R.string.user_foto),
             modifier = Modifier
                 .size(160.dp)
                 .clip(CircleShape),
@@ -107,25 +109,25 @@ fun UserDetailsContent(user: User) {
             color = MaterialTheme.colorScheme.primary
         )
         Spacer(Modifier.height(20.dp))
-        InfoRow(label = "Пол:", value = user.gender.replaceFirstChar { it.uppercase() })
-        InfoRow(label = "Дата рождения:", value = user.dobDateIso.take(10))
-        InfoRow(label = "Возраст:", value = "${user.dobAge}")
+        InfoRow(label = stringResource(R.string.gender), value = user.gender.replaceFirstChar { it.uppercase() })
+        InfoRow(label = stringResource(R.string.birthday), value = user.dobDateIso.take(10))
+        InfoRow(label = stringResource(R.string.age), value = "${user.dobAge}")
         InfoRow(
-            label = "E-mail:", value = user.email,
+            label = stringResource(R.string.e_mail), value = user.email,
             onClick = {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = "mailto:${user.email}".toUri()
                 context.startActivity(intent)
             })
         InfoRow(
-            label = "Телефон:", value = user.phone,
+            label = stringResource(R.string.phone), value = user.phone,
             onClick = {
                 val intent = Intent(Intent.ACTION_DIAL)
                 intent.data = "tel:${user.phone}".toUri()
                 context.startActivity(intent)
             })
         InfoRow(
-            label = "Адрес:",
+            label = stringResource(R.string.address),
             value = "${user.streetNumber} ${user.streetName}, ${user.city}, ${user.state}, ${user.country}",
             onClick = {
                 val addr =

@@ -21,8 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
+import ru.vsls.users.R
 import ru.vsls.users.domain.model.User
 
 @Composable
@@ -65,7 +67,9 @@ fun PullToRefreshCustomStyle(
     PullToRefreshBox(
         isRefreshing = isRefreshing,
         onRefresh = onRefresh,
-        modifier = modifier.fillMaxSize().padding(8.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(8.dp),
         state = state,
         contentAlignment = Alignment.Center,
         indicator = {
@@ -79,7 +83,7 @@ fun PullToRefreshCustomStyle(
         },
     ) {
         if (isEmpty)
-            Text("Обновите данные свайпом вниз")
+            Text(stringResource(R.string.updating_data))
 
         LazyColumn(
             Modifier.fillMaxSize(),

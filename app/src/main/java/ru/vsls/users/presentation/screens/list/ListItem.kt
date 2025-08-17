@@ -17,10 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import ru.vsls.users.R
 import ru.vsls.users.presentation.items.InfoRow
 
 @Composable
@@ -53,7 +55,7 @@ fun ListItem(
                     .size(90.dp)
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop,
-                contentDescription = "Фото пользователя"
+                contentDescription = stringResource(R.string.user_foto)
             )
             UserInfo(name, surname, phone, city)
         }
@@ -71,8 +73,8 @@ fun UserInfo(name: String, surname: String, phone: String, city: String) {
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold
         )
-        InfoRow(label = "Телефон:", value = phone)
-        InfoRow(label = "Город:", value = city)
+        InfoRow(label = stringResource(R.string.phone), value = phone)
+        InfoRow(label = stringResource(R.string.city), value = city)
     }
 }
 
