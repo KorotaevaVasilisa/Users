@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Users</string>
+    <string name="updating_data">Обновите данные свайпом вниз</string>
+    <string name="phone">Телефон:</string>
+    <string name="city">Город:</string>
+    <string name="user_foto">Фото пользователя</string>
+    <string name="back">Назад</string>
+    <string name="user">Пользователь  </string>
+    <string name="error">Неизвестная ошибка</string>
+    <string name="e_mail">E-mail:</string>
+    <string name="age">Возраст:</string>
+    <string name="birthday">Дата рождения:</string>
+    <string name="gender">Пол:</string>
+    <string name="address">Адрес:</string>
 </resources>
