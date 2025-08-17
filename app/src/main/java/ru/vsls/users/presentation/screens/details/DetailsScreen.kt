@@ -2,6 +2,11 @@ package ru.vsls.users.presentation.screens.details
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import ru.vsls.users.domain.model.User
@@ -98,10 +104,19 @@ fun UserDetailsContent(user: User) {
             contentScale = ContentScale.Crop
         )
         Spacer(Modifier.height(24.dp))
+
+        val infiniteTransition = rememberInfiniteTransition()
+        val animatedColor by infiniteTransition.animateColor(
+            initialValue = Color(0xFF60DDAD),
+            targetValue = Color(0xFF2E6DD5),
+            animationSpec = infiniteRepeatable(tween(1000), RepeatMode.Reverse),
+            label = "color"
+        )
         Text(
             text = "${user.firstName} ${user.lastName}",
             style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = animatedColor
         )
         Text(
             text = user.city,
