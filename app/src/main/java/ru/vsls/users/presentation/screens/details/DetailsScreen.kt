@@ -48,10 +48,17 @@ fun DetailsScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = stringResource(R.string.user)+ state.user?.firstName) },
+                title = {
+                    Text(
+                        text = "${stringResource(R.string.user)} ${state.user?.firstName ?: ""}"
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
+                        Icon(
+                            Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
                     }
                 }
             )
@@ -91,8 +98,9 @@ fun UserDetailsContent(user: User) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp)
-            .verticalScroll(rememberScrollState()),
+            .fillMaxHeight()
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AsyncImage(
@@ -124,7 +132,9 @@ fun UserDetailsContent(user: User) {
             color = MaterialTheme.colorScheme.primary
         )
         Spacer(Modifier.height(20.dp))
-        InfoRow(label = stringResource(R.string.gender), value = user.gender.replaceFirstChar { it.uppercase() })
+        InfoRow(
+            label = stringResource(R.string.gender),
+            value = user.gender.replaceFirstChar { it.uppercase() })
         InfoRow(label = stringResource(R.string.birthday), value = user.dobDateIso.take(10))
         InfoRow(label = stringResource(R.string.age), value = "${user.dobAge}")
         InfoRow(
