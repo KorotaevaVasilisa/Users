@@ -10,6 +10,11 @@ Users App позволяет просматривать список польз�
 экранами и анимацию элементов UI.
 
 ---
+## Скриншоты
+<p align="center">
+<img width="300" height="810" alt="image" src="https://github.com/user-attachments/assets/2ed2ae8a-b2d3-4987-a2f1-d7d9db3517d1" />
+<img width="300" height="817" alt="image" src="https://github.com/user-attachments/assets/6d66b439-fb49-4330-9dd4-f8df1503df49" />
+</p>
 
 ## Основные возможности
 
